@@ -106,6 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340801236194810746}
   - component: {fileID: 5340801236194810747}
+  - component: {fileID: 8912204635736693377}
   m_Layer: 6
   m_Name: PlayerPawn
   m_TagString: Untagged
@@ -144,3 +145,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8912204635736693377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340801236194810742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305307e7c4bc49fa8d98964f0dcb3889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTurnEnded: 0
+  pushForce: 35
+  aimLine: {fileID: 4130162405953082494, guid: 3391ce38688e9994685482d79081c81a, type: 3}

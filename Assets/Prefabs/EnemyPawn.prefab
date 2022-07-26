@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418089314906537754}
   - component: {fileID: 418089314906537755}
+  - component: {fileID: -7802402360796265671}
   m_Layer: 6
   m_Name: EnemyPawn
   m_TagString: Untagged
@@ -48,6 +49,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-7802402360796265671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418089314906537750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3fa9af4f6047f8a7c000c930bdc60e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTurnEnded: 0
+  pushForce: 35
 --- !u!1 &6603409989702435124
 GameObject:
   m_ObjectHideFlags: 0
