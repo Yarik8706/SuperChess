@@ -4,21 +4,20 @@ namespace ActionFigures.Pawn
 {
     public class EnemyPawnFigure : PawnFigure, IEnemyPawn
     {
-        public EnemyController EnemyController { get; set; }
-
         public void Active()
         {
-            isTurnEnded = false;
-            var playerPawnPosition = EnemyController.GetNearestPlayerPiece(transform.position);
+            IsTurnEnded = false;
+            var playerPawnPosition = ((EnemyController)MyController).GetNearestPlayerPiece(
+                transform.position, 
+                out var distance);
             var retractionForce = Vector3.Normalize(playerPawnPosition - transform.position);
             Move(retractionForce, Random.Range(pushForce - pushForce / 3, pushForce - pushForce / 6));
             StartCoroutine(WaitForEnd());
         }
 
-        protected override void Died()
+        public bool Availabled()
         {
-            gameController.enemyPawns.Remove(this);
-            base.Died();
+            return Rigidbody.velocity.magnitude == 0;
         }
     }
 }

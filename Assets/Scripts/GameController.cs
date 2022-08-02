@@ -1,5 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
-using ActionFigures;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,39 +11,63 @@ public class GameController : MonoBehaviour
     public Text loseIndexText;
     public GameObject winContainerCanvas;
     public GameObject loseContainerCanvas;
-    public List<Figure> playerPawns;
-    public List<Figure> enemyPawns;
-    public float retractionForce = 5;
-    public bool playerTurn = true;
     public const float HeightDeath = -5;
+    public bool isGameOver;
+    public static GameController Instance;
+    public readonly List<IBaseController> Controllers = new List<IBaseController>();
+    [HideInInspector] public int activeIndexController;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         loseIndexText.text = "Поражений: " + PlayerPrefs.GetInt("LoseIndex", 0);
         winIndexText.text = "Побед: " + PlayerPrefs.GetInt("WinIndex", 0);
-        foreach (var figure in playerPawns)
+        
+        StartCoroutine(Playing());
+    }
+
+    private IEnumerator Playing()
+    {
+        Controllers[1].Active();
+        yield return new WaitUntil(() => Controllers[1].IsActive);
+        while (!isGameOver)
         {
-            figure.gameController = this;
+            for (int i = 0; i < Controllers.Count; i++)
+            {
+                activeIndexController = i;
+                Controllers[i].Active();
+                yield return new WaitUntil(() => Controllers[i].IsActive);
+                if(isGameOver) break;
+            }
         }
-        foreach (var figure in enemyPawns)
+
+        foreach (var controller in Controllers)
         {
-            figure.gameController = this;
+            controller.GameOver();
         }
     }
 
-    private void Update()
+    public List<IBaseController> GetControllersWithoutCurrentController(IBaseController controller)
     {
-        if(winContainerCanvas.activeSelf || loseContainerCanvas.activeSelf) return; 
-        if (enemyPawns.Count == 0)
-        {
-            PlayerPrefs.SetInt("WinIndex", PlayerPrefs.GetInt("WinIndex", 0) + 1);
-            winContainerCanvas.SetActive(true);
-        } 
-        else if (playerPawns.Count == 0)
-        {
-            PlayerPrefs.SetInt("LoseIndex", PlayerPrefs.GetInt("LoseIndex", 0) + 1);
-            loseContainerCanvas.SetActive(true);
-        }
+        return new List<IBaseController>(Controllers.Where(i => i != controller));
+    }
+
+    public void Lose()
+    {
+        isGameOver = true;
+        PlayerPrefs.SetInt("LoseIndex", PlayerPrefs.GetInt("LoseIndex", 0) + 1);
+        loseContainerCanvas.SetActive(true);
+    }
+
+    public void Win()
+    {
+        isGameOver = true;
+        PlayerPrefs.SetInt("WinIndex", PlayerPrefs.GetInt("WinIndex", 0) + 1);
+        winContainerCanvas.SetActive(true);
     }
 
     public void ReloadScene()

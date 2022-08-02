@@ -1,25 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-namespace ActionFigures.Pawn
+namespace ActionFigures.Horse
 {
     public class HorseFigure : Figure
     {
-        [SerializeField] protected float pushForce = 35;
-
         protected void Move(Vector3 releaseRetractionForce, float force)
         {
-            Rigidbody.AddForce((releaseRetractionForce + transform.up) * force, ForceMode.VelocityChange);
+            Rigidbody.AddForce(GetMovingForce(releaseRetractionForce, force), ForceMode.VelocityChange);
         }
 
-        protected IEnumerator WaitForEnd()
+        protected Vector3 GetMovingForce(Vector3 retractionForce, float force)
         {
-            yield return null;
-            while (Rigidbody.velocity.magnitude != 0)
-            {
-                yield return null;
-            }
-            isTurnEnded = true;
+            return (retractionForce + transform.up * 2.5f) * force ;
         }
     }
 }
