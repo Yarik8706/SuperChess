@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour
     public Text loseIndexText;
     public GameObject winContainerCanvas;
     public GameObject loseContainerCanvas;
-    public const float HeightDeath = -5;
     public bool isGameOver;
     public static GameController Instance;
     public readonly List<IBaseController> Controllers = new List<IBaseController>();

@@ -6,7 +6,6 @@ namespace ActionFigures.Horse
     public class PlayerHorseFigure : HorseFigure, IPlayerPawn
     {
         public TrajectoryRenderer trajectoryRenderer;
-        public GameController GameController { get; set; }
 
         public void Select(Vector3 startClickPosition)
         {

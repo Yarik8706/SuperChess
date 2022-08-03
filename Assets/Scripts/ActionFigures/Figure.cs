@@ -8,20 +8,19 @@ namespace ActionFigures
         [SerializeField] protected GameObject explosionEffect;
         [SerializeField] protected float pushForce = 35;
         public GameObject controllerGameobject;
-        protected IBaseController MyController;
+        protected IList MyPawns;
         protected Rigidbody Rigidbody;
-        public bool IsTurnEnded = true;
+        internal bool IsTurnEnded = true;
 
         protected virtual void Start()
         {
-            MyController = controllerGameobject.GetComponent<IBaseController>();
-            MyController.Pawns.Add(this);
-            Rigidbody = GetComponent<Rigidbody>();        
+            MyPawns.Add(this);
+            Rigidbody = GetComponent<Rigidbody>();
         }
 
         private void Update()
         {
-            if (transform.position.y < GameController.HeightDeath)
+            if (transform.position.y < GameSettings.HeightDeath)
             {
                 Died();
             }
@@ -55,7 +54,7 @@ namespace ActionFigures
         protected virtual void Died()
         {
             IsTurnEnded = true;
-            MyController.Pawns.Remove(this);
+            MyPawns.Remove(this);
             Destroy(gameObject);
         }
     }

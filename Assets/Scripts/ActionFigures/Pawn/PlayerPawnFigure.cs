@@ -7,6 +7,12 @@ namespace ActionFigures.Pawn
         public GameObject aimLine;
         private static GameObject _activeAimLine;
 
+        protected override void Start()
+        {
+            MyPawns = controllerGameobject.GetComponent<IBaseController>().Pawns;
+            base.Start();
+        }
+
         public void Select(Vector3 startClickPosition)
         {
             IsTurnEnded = false;

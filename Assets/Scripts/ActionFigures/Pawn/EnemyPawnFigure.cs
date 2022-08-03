@@ -4,10 +4,19 @@ namespace ActionFigures.Pawn
 {
     public class EnemyPawnFigure : PawnFigure, IEnemyPawn
     {
+        public EnemyController EnemyController { get; set; }
+
+        protected override void Start()
+        {
+            EnemyController = controllerGameobject.GetComponent<EnemyController>();
+            MyPawns = EnemyController.Pawns;
+            base.Start();
+        }
+
         public void Active()
         {
             IsTurnEnded = false;
-            var playerPawnPosition = ((EnemyController)MyController).GetNearestPlayerPiece(
+            var playerPawnPosition = EnemyController.GetNearestPlayerPiece(
                 transform.position, 
                 out var distance);
             var retractionForce = Vector3.Normalize(playerPawnPosition - transform.position);
