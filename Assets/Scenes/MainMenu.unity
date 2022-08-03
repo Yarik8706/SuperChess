@@ -5205,7 +5205,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 7
+  m_AdditionalShaderChannelsFlag: 31
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5999,7 +5999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5154617639305634756, guid: 0ae2d3b9e26a8b845b32ddb7a21bed11, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5154617639305634756, guid: 0ae2d3b9e26a8b845b32ddb7a21bed11, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6007,7 +6007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5154617639305634756, guid: 0ae2d3b9e26a8b845b32ddb7a21bed11, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5154617639305634756, guid: 0ae2d3b9e26a8b845b32ddb7a21bed11, type: 3}
       propertyPath: m_AnchorMin.y
@@ -6051,7 +6051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5154617639305634756, guid: 0ae2d3b9e26a8b845b32ddb7a21bed11, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 360
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5154617639305634756, guid: 0ae2d3b9e26a8b845b32ddb7a21bed11, type: 3}
       propertyPath: m_AnchoredPosition.y
