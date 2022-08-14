@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using ActionFigures;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public interface IBaseController
+public interface IPawnController
 {
-    public List<Figure> Pawns { get; set; }
-    public Figure SelectionPawn { get; set; }
+    public IList<GameObject> Pawns { get; set; }
     public bool IsActive { get; set; }
 
     public void GameOver();
     public void Active();
-    public IEnumerator TurnOver();
 }

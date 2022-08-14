@@ -3,13 +3,15 @@ using UnityEngine;
 public class TrajectoryRenderer : MonoBehaviour
 {
     private LineRenderer _lineRenderer;
+    public static TrajectoryRenderer Instance;
 
     private void Start()
     {
+        Instance = this;
         _lineRenderer = GetComponent<LineRenderer>();
     }
 
-    public void ShowTrajectory(Vector3 origin, Vector3 speed, float mass)
+    public void ShowTrajectory(Vector3 origin, Vector3 speed)
     {
         var points = new Vector3[100];
         _lineRenderer.positionCount = points.Length;
