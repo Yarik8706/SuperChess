@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
+using Mirror;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -27,6 +25,7 @@ public class GameController : MonoBehaviour
 
     private IEnumerator Playing()
     {
+        yield return new WaitUntil(() => Controllers.Count >= 2);
         while (!isGameOver)
         {
             for (int i = 0; i < Controllers.Count; i++)
@@ -48,6 +47,4 @@ public class GameController : MonoBehaviour
     {
         return new List<IPawnController>(Controllers.Where(i => i != controller));
     }
-
-    
 }

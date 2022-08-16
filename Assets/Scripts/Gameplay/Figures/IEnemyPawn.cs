@@ -5,7 +5,6 @@ namespace ActionFigures
     public interface IEnemyPawn : IPawn
     {
         public void Active();
-        public bool Availabled();
     }
 
     public interface IEnemyController : IPawnController

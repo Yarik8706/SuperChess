@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using ActionFigures;
+using Gameplay.Controllers;
 using Mirror;
 using UnityEngine;
 
-namespace Figures
+namespace Gameplay.Figures
 {
     public class NetworkPlayerFigureManager : NetworkBehaviour, IPlayerPawn
     {
@@ -13,7 +14,7 @@ namespace Figures
 
         public Material enemyMaterial;
 
-        [field: SyncVar] public int ControllerIndex { get; set; }
+        [field: SyncVar]public int ControllerIndex { get; set; }
         private bool _isLocalFigure;
 
         private void Start()
@@ -21,27 +22,17 @@ namespace Figures
             PlayerFigureRoute = GetComponent<IPlayerFigureRoute>();
             FigureController = GetComponent<FigureController>();
             IsTurnEnded = true;
+            NetworkGameController.Instance.Controllers.Callback += AddControllerEvent;
         }
 
-        [ClientRpc]
-        public void UpdatePawnState(int newState)
+        private void AddControllerEvent(
+            SyncList<NetworkPlayerController>.Operation op,
+            int index, 
+            NetworkPlayerController item, 
+            NetworkPlayerController newItem)
         {
-            if (NetworkGameController.Instance.Controllers.Count <= newState)
-            {
-                NetworkGameController.Instance.Controllers.Callback 
-                    += (op, index, item, newItem) =>
-                    {
-                        if (op != SyncList<NetworkPlayerController>.Operation.OP_ADD) return;
-                        UpdateLocalState();
-                    };
-                return;
-            }
-            UpdateLocalState();
-        }
-
-        private void UpdateLocalState()
-        {
-            _isLocalFigure = NetworkGameController.Instance.Controllers[ControllerIndex].isLocalPlayer;
+            if(NetworkGameController.Instance.Controllers.Count <= ControllerIndex) return;
+             _isLocalFigure = NetworkGameController.Instance.Controllers[ControllerIndex].isLocalPlayer;
             if (!_isLocalFigure)
             {
                 SetEnemyMaterial();

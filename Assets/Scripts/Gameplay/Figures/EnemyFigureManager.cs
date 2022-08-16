@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Gameplay.Figures;
 using UnityEngine;
 
 namespace ActionFigures
@@ -29,11 +30,6 @@ namespace ActionFigures
             StartCoroutine(WaitForEnd());
         }
 
-        public virtual bool Availabled()
-        {
-            return FigureController.rigidbody3D.velocity.magnitude == 0;
-        }
-        
         public virtual IEnumerator WaitForEnd()
         {
             yield return new WaitUntil(() => FigureController.isMove);

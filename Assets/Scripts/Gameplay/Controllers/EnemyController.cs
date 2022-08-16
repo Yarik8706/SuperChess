@@ -60,7 +60,7 @@ namespace Controllers
             while (selectionPawn == null && Pawns.Count != 0)
             {
                 var pawn = (Pawns.Count == 1 ? Pawns[0] : Pawns[Random.Range(0, Pawns.Count)]).GetComponent<IEnemyPawn>();
-                if (pawn.Availabled())
+                if (pawn.FigureController.IsAvailabled())
                 {
                     selectionPawn = pawn;
                 }

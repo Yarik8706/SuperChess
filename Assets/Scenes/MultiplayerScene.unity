@@ -157,10 +157,10 @@ RectTransform:
   m_Father: {fileID: 3515745216795832221}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -818.5206, y: -504.34598}
-  m_SizeDelta: {x: 282.949, y: 71.3146}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 141.47937, y: 35.654022}
+  m_SizeDelta: {x: 282.94897, y: 71.314606}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5684306
 MonoBehaviour:
@@ -989,7 +989,7 @@ MonoBehaviour:
   - {fileID: 1635091718881485134, guid: 8dcbb5d391ad3f74abfd49f7cc056222, type: 3}
   - {fileID: 4130162405953082494, guid: 6645c3fd0ae636d41950225d335f63f3, type: 3}
   hasPlayer: 0
-  isOnlyServer: 1
+  isOnlyServer: 0
 --- !u!114 &1795652089
 MonoBehaviour:
   m_ObjectHideFlags: 0

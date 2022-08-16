@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529b1fd6c2d042c1a71e94020ba4895d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 128
   explosionEffect: {fileID: 3023962366479076871, guid: 1afd21fb6f88a8748a5819a840f21dfa, type: 3}
   pushForce: 35
   isMove: 0

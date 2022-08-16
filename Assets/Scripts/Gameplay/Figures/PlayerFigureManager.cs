@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Gameplay.Figures;
 using UnityEngine;
 
 namespace ActionFigures

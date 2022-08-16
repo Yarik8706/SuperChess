@@ -1,27 +1,48 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using ActionFigures;
 using UnityEngine;
 
-namespace ActionFigures
+namespace Gameplay.Figures
 {
     public class FigureController : MonoBehaviour
     {
+        public LayerMask blockingLayer;
         [SerializeField] protected GameObject explosionEffect;
         public float pushForce = 35;
         [HideInInspector] public bool isMove;
         [HideInInspector] public Rigidbody rigidbody3D;
+        private Collider _collider3D;
 
         private void Start()
         {
+            _collider3D = GetComponent<Collider>();
             rigidbody3D = GetComponent<Rigidbody>();
         }
 
         private void Update()
         {
+            if (IsEmptyBottom())
+            {
+                if(rigidbody3D.constraints == RigidbodyConstraints.None) return;
+                rigidbody3D.constraints = RigidbodyConstraints.None;
+            }
             if (transform.position.y < GameSettings.HeightDeath)
             {
                 Died();
             }
+        }
+
+        public bool IsAvailabled()
+        {
+            return rigidbody3D.velocity.magnitude == 0 && !IsEmptyBottom();
+        }
+
+        private bool IsEmptyBottom()
+        {
+            _collider3D.enabled = false;
+            var pl = !Physics.Raycast(transform.position, -Vector3.up, 5, blockingLayer);
+            _collider3D.enabled = true;
+            return pl;
         }
         
         protected virtual IEnumerator WaitForEnd()

@@ -415,13 +415,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1538675414}
         m_TargetAssemblyTypeName: UI.MainMenuUIController, Assembly-CSharp
         m_MethodName: LoadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MultiplayerScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &123859272
@@ -4494,7 +4494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221a698f9dcb9a8459e4288bed4328af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourTurnText: {fileID: 0}
   retractionForce: 5
 --- !u!4 &1267915665
 Transform:
@@ -6025,13 +6024,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1538675414}
         m_TargetAssemblyTypeName: UI.MainMenuUIController, Assembly-CSharp
         m_MethodName: LoadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SampleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1772844159

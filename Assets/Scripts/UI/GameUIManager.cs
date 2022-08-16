@@ -34,10 +34,10 @@ namespace UI
             PlayerPrefs.SetInt("WinIndex", PlayerPrefs.GetInt("WinIndex", 0) + 1);
             winContainerCanvas.SetActive(true);
         }
-    
-        public void ReloadScene()
+
+        public void LoadOtherScene(string sceneName)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(sceneName);
         }
     }
 }

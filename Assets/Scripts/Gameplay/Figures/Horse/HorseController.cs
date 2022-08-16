@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Figures;
+using UnityEngine;
 
 namespace ActionFigures
 {

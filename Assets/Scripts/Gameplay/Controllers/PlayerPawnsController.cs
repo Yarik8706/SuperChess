@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerPawnsController : MonoBehaviour, IPawnController
 {
-    public Text yourTurnText;
     public float retractionForce = 4;
     private Vector3 _clickPosition;
     public IList<GameObject> Pawns { get; set; }
@@ -35,7 +34,7 @@ public class PlayerPawnsController : MonoBehaviour, IPawnController
             IsActive = true;
             return;
         }
-        yourTurnText.enabled = true;
+        GameUIManager.Instance.yourTurnText.enabled = true;
         if (SelectionPawn == null)
         {
             if(!Input.GetMouseButton(0)) return;
@@ -86,7 +85,7 @@ public class PlayerPawnsController : MonoBehaviour, IPawnController
         var pawn = SelectionPawn;
         SelectionPawn = null;
         yield return new WaitUntil(() => pawn.IsTurnEnded);
-        yourTurnText.enabled = false;
+        GameUIManager.Instance.yourTurnText.enabled = false;
         IsActive = true;
     }
 }
