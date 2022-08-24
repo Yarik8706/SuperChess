@@ -1,7 +1,6 @@
-﻿using Gameplay.Figures;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ActionFigures.Pawn
+namespace Gameplay.Figures.Pawn
 {
     public class PawnController : FigureController
     {

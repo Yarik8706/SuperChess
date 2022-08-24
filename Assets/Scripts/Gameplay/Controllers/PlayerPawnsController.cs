@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ActionFigures;
+using Gameplay.Figures;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;

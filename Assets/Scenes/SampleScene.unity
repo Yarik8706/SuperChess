@@ -333,6 +333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPawn (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5340801236194810742, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5340801236194810746, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -552,6 +556,10 @@ PrefabInstance:
     - target: {fileID: 5340801236194810742, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
       propertyPath: m_Name
       value: PlayerPawn (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340801236194810742, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5340801236194810746, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
       propertyPath: m_RootOrder
@@ -874,6 +882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPawn (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 418089314906537750, guid: 5aa4517dbc8ed2d4a859f13962ecb424, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 418089314906537754, guid: 5aa4517dbc8ed2d4a859f13962ecb424, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1045,6 +1057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPawn (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 418089314906537750, guid: 5aa4517dbc8ed2d4a859f13962ecb424, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 418089314906537754, guid: 5aa4517dbc8ed2d4a859f13962ecb424, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1186,6 +1202,10 @@ PrefabInstance:
     - target: {fileID: 5340801236194810742, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
       propertyPath: m_Name
       value: PlayerPawn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340801236194810742, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5340801236194810746, guid: 19017bc2fc8cfe8449a8eefac744c6a1, type: 3}
       propertyPath: m_RootOrder
@@ -1578,6 +1598,10 @@ PrefabInstance:
     - target: {fileID: 418089314906537750, guid: 5aa4517dbc8ed2d4a859f13962ecb424, type: 3}
       propertyPath: m_Name
       value: EnemyPawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 418089314906537750, guid: 5aa4517dbc8ed2d4a859f13962ecb424, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 418089314906537754, guid: 5aa4517dbc8ed2d4a859f13962ecb424, type: 3}
       propertyPath: m_RootOrder

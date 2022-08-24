@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ActionFigures;
+using Gameplay.Figures;
 using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Controllers
+namespace Gameplay.Controllers
 {
     public class EnemyController : MonoBehaviour, IEnemyController
     {
@@ -57,12 +58,18 @@ namespace Controllers
         private void MoveRandomEnemy()
         {
             IEnemyPawn selectionPawn = null;
+            var random = new System.Random();
             while (selectionPawn == null && Pawns.Count != 0)
             {
-                var pawn = (Pawns.Count == 1 ? Pawns[0] : Pawns[Random.Range(0, Pawns.Count)]).GetComponent<IEnemyPawn>();
+                var currentPawn = Pawns.Count == 1 ? Pawns[0] : Pawns[random.Next(0, Pawns.Count)];
+                var pawn = currentPawn.GetComponent<IEnemyPawn>();
                 if (pawn.FigureController.IsAvailabled())
                 {
                     selectionPawn = pawn;
+                }
+                else
+                {
+                    Pawns.Remove(currentPawn);
                 }
             }
         

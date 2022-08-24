@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Gameplay.Figures;
+using ActionFigures;
 using UnityEngine;
 
-namespace ActionFigures
+namespace Gameplay.Figures
 {
     public class PlayerFigureManager : MonoBehaviour, IPlayerPawn
     {
