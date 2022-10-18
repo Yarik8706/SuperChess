@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
-
+ 
 namespace Database
 {
     public class PlayerModel
@@ -16,9 +16,9 @@ namespace Database
         [JsonProperty("username")]
         public string Username { get; set; }
         
-        [BsonRepresentation(BsonType.String)]
         [BsonElement("email")]
         [JsonProperty("email")]
+        [BsonRepresentation(BsonType.String)]
         public string EmailAddress { get; set; }
         
         [BsonElement("score")]
@@ -58,27 +58,6 @@ namespace Database
             GlobalScore = globalScore;
             Achievements = achievements;
             Password = "null";
-        }
-    }
-
-    public class AchievementModel
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-        [BsonElement]
-        [JsonProperty("title")]
-        [BsonRepresentation(BsonType.String)]
-        public string Title { get; set; }
-        [BsonElement]
-        [JsonProperty("description")]
-        [BsonRepresentation(BsonType.String)]
-        public string Description { get; set; }
-
-        public AchievementModel(string title, string description)
-        {
-            Title = title;
-            Description = description;
         }
     }
 }

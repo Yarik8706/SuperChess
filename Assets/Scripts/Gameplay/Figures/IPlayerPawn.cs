@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Gameplay;
 using Gameplay.Figures;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace ActionFigures
 
     public interface IPawn : ILimb
     {
+        public IPawnController PawnController { get; set; }
         public FigureController FigureController { get; set; }
     }
 
@@ -24,7 +26,8 @@ namespace ActionFigures
 
     public interface IPlayerFigureRoute : IPlayerInput{}
     
-    public interface ILimb {
+    public interface ILimb
+    {
         public bool IsTurnEnded { get; set; }
         public IEnumerator WaitForEnd();
     }

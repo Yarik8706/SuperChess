@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace Gameplay.Controllers
 {
-    public class EnemyController : MonoBehaviour, IEnemyController
+    public class EnemyController : MonoBehaviour, IPawnController
     {
         public IList<GameObject> Pawns { get; set; }
         public bool IsActive { get; set; }
@@ -20,12 +20,21 @@ namespace Gameplay.Controllers
         {
             IsActive = true;
             Pawns = new List<GameObject>();
-            GameSettings.EnemyController = this;
         }
 
         private void Start()
         {
             GameController.Instance.Controllers.Add(this);
+        }
+
+        public void AddPawn(GameObject pawn)
+        {
+            Pawns.Add(pawn);
+        }
+
+        public void RemovePawn(GameObject pawn)
+        {
+            Pawns.Remove(pawn);
         }
 
         public void GameOver()
@@ -84,9 +93,9 @@ namespace Gameplay.Controllers
             StartCoroutine(TurnOver());
         }
     
-        public Vector3 GetNearestPlayerPiece(Vector3 currentObjectPosition)
+        public static Vector3 GetNearestPlayerPiece(IPawnController pawnController, Vector3 currentObjectPosition)
         {
-            var otherPawns = GameController.Instance.GetControllersWithoutCurrentController(this)[0].Pawns;
+            var otherPawns = GameController.Instance.GetControllersWithoutCurrentController(pawnController)[0].Pawns;
             var pawnDistances = otherPawns.Select(
                 playerPawn => 
                     Vector2.Distance(
@@ -96,9 +105,9 @@ namespace Gameplay.Controllers
             return otherPawns[pawnDistances.IndexOf(pawnDistances.Min())].transform.position;
         }
     
-        public Vector3 GetNearestPlayerPiece(Vector3 currentObjectPosition, out float distance)
+        public static Vector3 GetNearestPlayerPiece(IPawnController pawnController, Vector3 currentObjectPosition, out float distance)
         {
-            var otherPawns = GameController.Instance.GetControllersWithoutCurrentController(this)[0].Pawns;
+            var otherPawns = GameController.Instance.GetControllersWithoutCurrentController(pawnController)[0].Pawns;
             var pawnDistances = otherPawns.Select(
                 playerPawn => 
                     Vector2.Distance(

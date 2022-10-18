@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using ActionFigures;
+using Gameplay.Controllers;
+using UnityEditor;
 using UnityEngine;
 
 namespace Gameplay.Figures
@@ -8,13 +10,15 @@ namespace Gameplay.Figures
     {
         public bool IsTurnEnded { get; set; }
         public IPlayerFigureRoute PlayerFigureRoute { get; set; }
+        public IPawnController PawnController { get; set; }
+        public PlayerPawnsController sPawnController;
         public FigureController FigureController { get; set; }
         public int ControllerIndex { get; set; }
 
         protected virtual void Start()
         {
             IsTurnEnded = true;
-            AddPawnOnController();
+            sPawnController.AddPawn(gameObject);
             PlayerFigureRoute = GetComponent<IPlayerFigureRoute>();
             FigureController = GetComponent<FigureController>();
         }
@@ -46,17 +50,7 @@ namespace Gameplay.Figures
         protected virtual void OnDestroy()
         {
             IsTurnEnded = true;
-            RemovePawnOnController();
-        }
-
-        protected virtual void RemovePawnOnController()
-        {
-            GameSettings.PawnController.Pawns.Remove(gameObject);
-        }
-
-        protected virtual void AddPawnOnController()
-        {
-            GameSettings.PawnController.Pawns.Add(gameObject);
+            sPawnController.RemovePawn(gameObject);
         }
     }
 }

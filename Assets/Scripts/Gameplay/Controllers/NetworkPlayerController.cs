@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ActionFigures;
-using Figures;
 using Gameplay.Figures;
 using Mirror;
 using UI;
@@ -15,31 +15,26 @@ namespace Gameplay.Controllers
 
         private IPlayerPawn _selectionPawn;
         private Vector3 _clickPosition;
-
-        [HideInInspector] [SyncVar] public bool isGameStart;
         [HideInInspector] [SyncVar] public GameObject activePawnRoute;
-    
-        public IList<GameObject> Pawns { get; set; }
+
+        public IList<GameObject> Pawns { get; set; } = new SyncList<GameObject>();
         [field: SyncVar] public bool IsActive { get; set; }
         [SyncVar] public int controllerIndex;
-
-        [ClientCallback]
-        private void Awake()
-        {
-            Pawns = new List<GameObject>();
-        }
 
         public override void OnStartServer()
         {
             IsActive = true;
             NetworkGameController.Instance.Controllers.Add(this);
-            controllerIndex = NetworkGameController.Instance.Controllers.IndexOf(this);
+            controllerIndex = NetworkGameController.Instance.Controllers.Count - 1;
+            Initialize();
         }
 
-        public override void OnStartLocalPlayer()
+        [ClientRpc]
+        private void Initialize()
         {
-            GameSettings.NetworkPlayerController = this;
-            GameSettings.PawnController = this;
+            IsActive = true;
+            NetworkGameController.Instance.Controllers.Add(this);
+            controllerIndex = NetworkGameController.Instance.Controllers.Count - 1;
         }
 
         [ServerCallback]
@@ -54,12 +49,14 @@ namespace Gameplay.Controllers
                 NetworkServer.Spawn(pawn);
                 var pawnScript = pawn.GetComponent<NetworkPlayerFigureManager>();
                 pawnScript.ControllerIndex = controllerIndex;
+                pawnScript.ControllerIndexChange(controllerIndex);
+                pawnScript.PawnController = this;
             }
         }
-    
+
         private void Update()
         {
-            if (IsActive || !isLocalPlayer || !isGameStart) return;
+            if (IsActive || !isLocalPlayer || NetworkGameController.Instance.isGameOver) return;
             if (Pawns.Count == 0)
             {
                 NetworkGameController.Instance.isGameOver = true;
@@ -97,6 +94,16 @@ namespace Gameplay.Controllers
             GameOver();
         }
 
+        public void AddPawn(GameObject pawn)
+        {
+            Pawns.Add(pawn);
+        }
+
+        public void RemovePawn(GameObject pawn)
+        {
+            Pawns.Remove(pawn);
+        }
+
         [ClientCallback]
         public void GameOver()
         {
@@ -130,6 +137,7 @@ namespace Gameplay.Controllers
         [Command]
         private void TurnOver()
         {
+            NetworkGameController.Instance.isWait = false;
             IsActive = true;
         }
     

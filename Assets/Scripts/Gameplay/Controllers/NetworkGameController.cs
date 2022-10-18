@@ -9,6 +9,7 @@ namespace Gameplay.Controllers
         public GameObject pawnFigure;
         public int requiredConnectionPlayers;
         [SyncVar] public bool isGameOver;
+        public bool isWait;
         public static NetworkGameController Instance;
         public readonly SyncList<NetworkPlayerController> Controllers = new SyncList<NetworkPlayerController>();
 
@@ -29,18 +30,15 @@ namespace Gameplay.Controllers
             foreach (var controller in Controllers)
             {
                 controller.SpawnFigures();
-                controller.isGameStart = true;
             }
-            Controllers[0].IsActive = false;
-            Controllers[0].Active();
-            yield return new WaitUntil(() => Controllers[0].IsActive);
             while (!isGameOver)
             {
                 foreach (var t in Controllers)
                 {
-                    t.IsActive = false;
+                    Debug.Log("Activity Start --- " + t.name);
                     t.TargetActive();
-                    yield return new WaitUntil(() => t.IsActive);
+                    isWait = true;
+                    yield return new WaitUntil(() => !isWait);
                     if(isGameOver) break;
                 }
             }
@@ -49,6 +47,12 @@ namespace Gameplay.Controllers
             {
                 controller.TargetGameOver();
             }
+        }
+
+        [Command(requiresAuthority = false)]
+        public void TurnOvet()
+        {
+            isWait = false;
         }
 
         // public List<NetworkGameController> GetControllersWithoutCurrentController(NetworkGameController controller)

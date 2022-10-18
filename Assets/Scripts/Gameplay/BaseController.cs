@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPawnController
+namespace Gameplay
 {
-    public IList<GameObject> Pawns { get; set; }
-    public bool IsActive { get; set; }
-
-    public void GameOver();
-    public void Active();
+    public interface IPawnController
+    {
+        public IList<GameObject> Pawns { get; set; }
+        public bool IsActive { get; set; }
+        public void AddPawn(GameObject pawn);
+        public void RemovePawn(GameObject pawn);
+        public void GameOver();
+        public void Active();
+    }
 }
